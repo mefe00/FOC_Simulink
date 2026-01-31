@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<System>
+  <P Name="Location">[1410, 0, 2732, 768]</P>
+  <P Name="ZoomFactor">150</P>
+  <Block BlockType="Inport" Name="i_a_meas[A]" SID="24">
+    <P Name="Position">[15, 98, 45, 112]</P>
+    <P Name="ZOrder">-1</P>
+  </Block>
+  <Block BlockType="Inport" Name="i_b_meas[A]" SID="26">
+    <P Name="Position">[15, 208, 45, 222]</P>
+    <P Name="ZOrder">1</P>
+    <P Name="Port">2</P>
+  </Block>
+  <Block BlockType="Constant" Name="1/sqrt(3)" SID="30">
+    <P Name="Position">[10, 145, 45, 175]</P>
+    <P Name="ZOrder">3</P>
+    <P Name="Value">1/sqrt(3)</P>
+    <P Name="OutDataTypeStr">single</P>
+  </Block>
+  <Block BlockType="Constant" Name="2/sqrt(3)" SID="31">
+    <P Name="Position">[15, 255, 45, 285]</P>
+    <P Name="ZOrder">4</P>
+    <P Name="Value">2/sqrt(3)</P>
+    <P Name="OutDataTypeStr">single</P>
+  </Block>
+  <Block BlockType="Sum" Name="Add" SID="34">
+    <PortCounts in="2" out="1"/>
+    <P Name="Position">[210, 192, 240, 223]</P>
+    <P Name="ZOrder">7</P>
+    <P Name="IconShape">rectangular</P>
+  </Block>
+  <Block BlockType="Product" Name="Product" SID="32">
+    <PortCounts in="2" out="1"/>
+    <P Name="Position">[115, 137, 145, 168]</P>
+    <P Name="ZOrder">5</P>
+  </Block>
+  <Block BlockType="Product" Name="Product1" SID="33">
+    <PortCounts in="2" out="1"/>
+    <P Name="Position">[115, 247, 145, 278]</P>
+    <P Name="ZOrder">6</P>
+  </Block>
+  <Block BlockType="Outport" Name="i_x[A]" SID="25">
+    <P Name="Position">[280, 98, 310, 112]</P>
+    <P Name="ZOrder">-2</P>
+  </Block>
+  <Block BlockType="Outport" Name="i_y[A]" SID="29">
+    <P Name="Position">[280, 203, 310, 217]</P>
+    <P Name="ZOrder">2</P>
+    <P Name="Port">2</P>
+  </Block>
+  <Line>
+    <P Name="ZOrder">2</P>
+    <P Name="Src">24#out:1</P>
+    <P Name="Points">[24, 0]</P>
+    <Branch>
+      <P Name="ZOrder">5</P>
+      <P Name="Points">[0, 40]</P>
+      <P Name="Dst">32#in:1</P>
+    </Branch>
+    <Branch>
+      <P Name="ZOrder">4</P>
+      <P Name="Dst">25#in:1</P>
+    </Branch>
+  </Line>
+  <Line>
+    <P Name="ZOrder">3</P>
+    <P Name="Src">30#out:1</P>
+    <P Name="Dst">32#in:2</P>
+  </Line>
+  <Line>
+    <P Name="ZOrder">6</P>
+    <P Name="Src">26#out:1</P>
+    <P Name="Points">[35, 0; 0, 40]</P>
+    <P Name="Dst">33#in:1</P>
+  </Line>
+  <Line>
+    <P Name="ZOrder">7</P>
+    <P Name="Src">31#out:1</P>
+    <P Name="Dst">33#in:2</P>
+  </Line>
+  <Line>
+    <P Name="ZOrder">8</P>
+    <P Name="Src">32#out:1</P>
+    <P Name="Points">[23, 0; 0, 45]</P>
+    <P Name="Dst">34#in:1</P>
+  </Line>
+  <Line>
+    <P Name="ZOrder">9</P>
+    <P Name="Src">33#out:1</P>
+    <P Name="Points">[23, 0; 0, -50]</P>
+    <P Name="Dst">34#in:2</P>
+  </Line>
+  <Line>
+    <P Name="ZOrder">10</P>
+    <P Name="Src">34#out:1</P>
+    <P Name="Dst">29#in:1</P>
+  </Line>
+  <Annotation SID="28">
+    <P Name="Name">İx = İa
+
+İy = (1/ kök3) (İa + 2İb)</P>
+    <P Name="Position">[106, 32, 208, 73]</P>
+    <P Name="InternalMargins">[0, 0, 0, 0]</P>
+  </Annotation>
+</System>

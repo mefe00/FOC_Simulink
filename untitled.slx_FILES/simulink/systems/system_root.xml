@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<System>
+  <P Name="Location">[1410, 0, 2732, 768]</P>
+  <P Name="Open">on</P>
+  <P Name="ReportName">simulink-default.rpt</P>
+  <P Name="SIDHighWatermark">59</P>
+  <Block BlockType="Inport" Name="T_mot_ref[Nm]" SID="1">
+    <P Name="Position">[75, 98, 105, 112]</P>
+    <P Name="ZOrder">1</P>
+  </Block>
+  <Block BlockType="Inport" Name="i_a_meas[A]" SID="2">
+    <P Name="Position">[75, 158, 105, 172]</P>
+    <P Name="ZOrder">2</P>
+    <P Name="Port">2</P>
+  </Block>
+  <Block BlockType="Inport" Name="i_b_meas[A]" SID="3">
+    <P Name="Position">[70, 208, 100, 222]</P>
+    <P Name="ZOrder">3</P>
+    <P Name="Port">3</P>
+  </Block>
+  <Block BlockType="Inport" Name="alpha[rad]" SID="4">
+    <P Name="Position">[75, 258, 105, 272]</P>
+    <P Name="ZOrder">4</P>
+    <P Name="Port">4</P>
+  </Block>
+  <Block BlockType="Inport" Name="w[rad/s]" SID="5">
+    <P Name="Position">[75, 318, 105, 332]</P>
+    <P Name="ZOrder">5</P>
+    <P Name="Port">5</P>
+  </Block>
+  <Block BlockType="Inport" Name="U_bat[V]" SID="6">
+    <P Name="Position">[75, 373, 105, 387]</P>
+    <P Name="ZOrder">6</P>
+    <P Name="Port">6</P>
+  </Block>
+  <Block BlockType="SubSystem" Name="Current_Transformation&#xA;(Clark_Park)" SID="18">
+    <PortCounts in="3" out="2"/>
+    <P Name="Position">[305, 136, 455, 294]</P>
+    <P Name="ZOrder">11</P>
+    <P Name="LibrarySourceProduct" Ref="bdmxdata:LibrarySourceProduct_18"/>
+    <P Name="ContentPreviewEnabled">on</P>
+    <System Ref="system_18"/>
+  </Block>
+  <Block BlockType="Constant" Name="current_ctrl" SID="7">
+    <P Name="Position">[75, 425, 105, 455]</P>
+    <P Name="ZOrder">7</P>
+  </Block>
+  <Block BlockType="Outport" Name="duty_a[%]" SID="14">
+    <P Name="Position">[1450, 108, 1480, 122]</P>
+    <P Name="ZOrder">8</P>
+  </Block>
+  <Block BlockType="Outport" Name="duty_b[%]" SID="15">
+    <P Name="Position">[1450, 208, 1480, 222]</P>
+    <P Name="ZOrder">9</P>
+    <P Name="Port">2</P>
+  </Block>
+  <Block BlockType="Outport" Name="duty_c[%]" SID="16">
+    <P Name="Position">[1450, 308, 1480, 322]</P>
+    <P Name="ZOrder">10</P>
+    <P Name="Port">3</P>
+  </Block>
+  <Line>
+    <P Name="ZOrder">1</P>
+    <P Name="Src">2#out:1</P>
+    <P Name="Dst">18#in:1</P>
+  </Line>
+  <Line>
+    <P Name="ZOrder">2</P>
+    <P Name="Src">3#out:1</P>
+    <P Name="Dst">18#in:2</P>
+  </Line>
+  <Line>
+    <P Name="ZOrder">3</P>
+    <P Name="Src">4#out:1</P>
+    <P Name="Dst">18#in:3</P>
+  </Line>
+  <Annotation SID="27">
+    <P Name="Name">Current_Transformation içerisinde Clark ve Park dönüşümleri yapılıyor ve clark dönüşümleri için faz akım değerleri park dönüşümü için ise hem faz akım değerleri hemde gerçek elektriksel açı değeri giriş yapıyor ve 3 faz akım değerleri birbirini takip eden 2 eksen açı değerine indirgendi.</P>
+    <P Name="Position">[289, 40, 509, 131]</P>
+    <P Name="InternalMargins">[0, 0, 0, 0]</P>
+    <P Name="FixedHeight">on</P>
+    <P Name="FixedWidth">on</P>
+  </Annotation>
+  <Annotation SID="17">
+    <P Name="Name">Çıktılarımız ise faz başına görev döngülerimizdir (PWM)</P>
+    <P Name="Position">[1512, 208, 1760, 223]</P>
+    <P Name="InternalMargins">[0, 0, 0, 0]</P>
+  </Annotation>
+  <Annotation SID="13">
+    <P Name="Name">U_bat değeri ise batarya voltajı değeridir.</P>
+    <P Name="Position">[-334, 377, -141, 398]</P>
+    <P Name="InternalMargins">[0, 0, 0, 0]</P>
+    <P Name="FixedHeight">on</P>
+    <P Name="FixedWidth">on</P>
+  </Annotation>
+  <Annotation SID="12">
+    <P Name="Name">current_ctrl Mevcut FOC algortimasını aktif etmek veya devre dışı bırakmak için kullanılacak.</P>
+    <P Name="Position">[-340, 434, 27, 463]</P>
+    <P Name="InternalMargins">[0, 0, 0, 0]</P>
+    <P Name="FixedHeight">on</P>
+    <P Name="FixedWidth">on</P>
+  </Annotation>
+  <Annotation SID="11">
+    <P Name="Name">w ise bizim motorumuzun açısal hızıdır. bu değer ise alpha yardımı ile ortaya çıkıyor.</P>
+    <P Name="Position">[-336, 318, 45, 331]</P>
+    <P Name="InternalMargins">[0, 0, 0, 0]</P>
+    <P Name="FixedHeight">on</P>
+    <P Name="FixedWidth">on</P>
+  </Annotation>
+  <Annotation SID="10">
+    <P Name="Name">Alpha açımız ise FOC algoritmasında kullanacağımız ve hall sensörleri yardımı ile ölç-
+tüğümüz gerçek elektriksel açı değeridir.</P>
+    <P Name="Position">[-336, 263, 45, 291]</P>
+    <P Name="InternalMargins">[0, 0, 0, 0]</P>
+  </Annotation>
+  <Annotation SID="9">
+    <P Name="Name">FOC&apos;de kullanacağımız ve ölçtüğümüz faz akımları i_a_meas ve i_b_meas. Üç faz var ve iki tane ölçüm var bunun sebebi ise Kirchoff ile 3. akımı bulabiliyor olmamız.</P>
+    <P Name="Position">[-336, 153, 41, 179]</P>
+    <P Name="InternalMargins">[0, 0, 0, 0]</P>
+    <P Name="FixedHeight">on</P>
+    <P Name="FixedWidth">on</P>
+  </Annotation>
+  <Annotation SID="8">
+    <P Name="Name">Referans torku olarak kullanılacak ve yaptığımız kontrolörü takip edecek (hedef tork)</P>
+    <P Name="Position">[-336, 98, 41, 112]</P>
+    <P Name="InternalMargins">[0, 0, 0, 0]</P>
+    <P Name="FixedHeight">on</P>
+    <P Name="FixedWidth">on</P>
+  </Annotation>
+</System>
